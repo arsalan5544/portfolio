@@ -1,129 +1,167 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsalan Ahmed</title>
 
-<html>
-	<head>
-		<title>Arsalan Ahmed</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+    <!-- Favicon -->
+    <link rel="icon" href="images/eyemoji.png" type="image/png">
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Who am I</a></li>
-							<li><a href="#three">My Contact Info</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+        body {
+            font-family: 'courier new', monospace, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen">
-						<div class="inner">
-							<h1>Hi!</h1>
-							<p>My name is Arsalan Ahmed and I go to <a href="https://engineering.ucdavis.edu/">UC Davis</a><br />
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">more</a></li>
-							</ul>
-						</div>
-					</section>
+            /* Background image */
+            background: url("images/backgroundfinal.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
-						<section>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>I major in electrical Engineering</h2>
-									<p>My main pathway is Digital Electronics and circuit fabrication</p>
-									<ul class="actions">
-										<li><a href="arsalan resume q2.pdf" class="button">My Resume</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>What else do I do?</h2>
-									<p>other than working on hardware related projects, I have have taken interest in collaborating with others with web development	</p>
-									<ul class="actions">
-										<li><a href="" class="button">Learn more</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
+        /* Dark overlay */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: -1;
+        }
 
-					</section>
+        /* Top-right links */
+        header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
 
-				<!-- Three -->
-					<section id="three" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Let's get in touch</h2>
-							<p>Down to see what else I'll be working and stay updated?</p>
-							<div class="split style1">
-								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
-											</div>	
-										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">join</a></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
+        header a {
+            margin-left: 16px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
-										<li>
-											<h3>Socials</h3>
-											<ul class="icons">
-												<li><a href="https://www.instagram.com/arsalan.pptx/?hl=en" class="icon brands fa-instagram"><span class="label">Arsalan Ahmed</span></a></li>
-												<li><a href="https://www.linkedin.com/in/arsalankk/" class="icon brands fa-linkedin-in"><span class="label">Arsalan Ahmed</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
+        header a:hover {
+            opacity: 0.7;
+        }
 
-			</div>
+        /* Container for interactive movement */
+        .interactive-container {
+            transition: transform 0.1s ease; /* Smooth movement */
+            z-index: 1;
+        }
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+        /* Center content */
+        main h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        /* Icon navigation */
+        .icons {
+            margin-top: 1.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
 
-	</body>
+        .icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icons img {
+            width: 47px;
+            height: 47px;
+            object-fit: contain;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .icons img:hover {
+            transform: translateY(-3px);
+            opacity: 0.7;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            main h1 {
+                font-size: 2.2rem;
+            }
+
+            .icons img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Top-right -->
+    <header>
+        <a href="terms.html">Terms</a>
+		<a href="privacy.html">Privacy Policy</a>
+    </header>
+
+    <!-- Interactive container -->
+    <div class="interactive-container">
+        <main>
+            <h1>Arsalan Ahmed</h1>
+
+            <nav class="icons">
+                <a href="arsalanahmed.pdf" target="_blank" aria-label="Resume">
+                    <img src="images/resumeicon.png" alt="Resume">
+                </a>
+
+                <a href="https://www.instagram.com/kitkatt.pptx/" target="_blank" aria-label="Instagram">
+                    <img src="images/instagramicon.png" alt="Instagram">
+                </a>
+
+                <a href="https://www.linkedin.com/in/arsalanprofile/" target="_blank" aria-label="LinkedIn">
+                    <img src="images/linkedinicon.png" alt="LinkedIn">
+                </a>
+
+                <a href="https://open.spotify.com/user/31kpkgragwztq4pjgwf7iadegz5y?si=fd3e29b337914d3c" target="_blank" aria-label="Spotify">
+                    <img src="images/spotifyicon.png" alt="Spotify">
+                </a>
+            </nav>
+        </main>
+    </div>
+
+    <!-- Mouse movement script -->
+    <script>
+        const container = document.querySelector('.interactive-container');
+
+        document.addEventListener('mousemove', (e) => {
+            const { innerWidth, innerHeight } = window;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Sensitivity multiplier (adjust to make movement stronger or weaker)
+            const offsetX = ((mouseX / innerWidth) - 0.5) * 10; 
+            const offsetY = ((mouseY / innerHeight) - 0.5) * 10;
+
+            container.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        });
+    </script>
+
+</body>
 </html>
