@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms</title>
     <link rel="icon" href="images/eyemoji.png" type="image/png">
     <style>
+        :root[data-theme="light"] {
+            --bg: #fff;
+            --color: #000;
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #111;
+            --color: #f0f0f0;
+        }
+
         body {
             margin: 0;
             font-family: 'Courier New', Courier, monospace, sans-serif;
-            background: #fff;
-            color: #000;
+            background: var(--bg);
+            color: var(--color);
             padding: 40px;
             line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .back-button {
@@ -20,7 +31,7 @@
             top: 20px;
             left: 20px;
             text-decoration: none;
-            color: #000;
+            color: var(--color);
             font-weight: bold;
             font-size: 1rem;
             background: none;
@@ -31,6 +42,23 @@
 
         .back-button:hover {
             text-decoration: underline;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.2);
         }
 
         h1 {
@@ -49,6 +77,9 @@
 
     <!-- Back button -->
     <a href="index.html" class="back-button">← Back</a>
+
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">🌙</button>
 
     <!-- Page title -->
     <h1>Terms</h1>
@@ -147,7 +178,7 @@ The Website may contain links to third-party websites. We do not control these s
 </p>
 
 <p>
-The Website is provided “as is” and “as available.” We make no warranties regarding accuracy, completeness, reliability, or availability.
+The Website is provided "as is" and "as available." We make no warranties regarding accuracy, completeness, reliability, or availability.
 </p>
 
 <p>
@@ -183,6 +214,20 @@ These Terms are governed by the laws of the United States. Any disputes shall be
 </p>
 
     </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Show correct emoji on load
+        toggle.textContent = html.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            toggle.textContent = isDark ? '🌙' : '☀️';
+        });
+    </script>
 
 </body>
 </html>
