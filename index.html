@@ -24,11 +24,22 @@
             align-items: center;
             text-align: center;
             color: #fff;
-
-            /* Background image */
-            background: url("images/backgroundfinal.jpg") no-repeat center center fixed;
-            background-size: cover;
         }
+
+        /* Background layers — crossfade between them */
+        .bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .bg.active { opacity: 1; }
 
         /* Dark overlay */
         .overlay {
@@ -53,13 +64,11 @@
             font-weight: 600;
         }
 
-        header a:hover {
-            opacity: 0.7;
-        }
+        header a:hover { opacity: 0.7; }
 
         /* Container for interactive movement */
         .interactive-container {
-            transition: transform 0.1s ease; /* Smooth movement */
+            transition: transform 0.1s ease;
             z-index: 1;
         }
 
@@ -68,6 +77,8 @@
             font-size: 6rem;
             font-weight: 700;
             letter-spacing: 1px;
+            /* prevent h1 clicks from bubbling weirdly */
+            pointer-events: none;
         }
 
         /* Icon navigation */
@@ -98,27 +109,27 @@
 
         /* Mobile */
         @media (max-width: 600px) {
-            main h1 {
-                font-size: 2.2rem;
-            }
-
-            .icons img {
-                width: 24px;
-                height: 24px;
-            }
+            main h1 { font-size: 2.2rem; }
+            .icons img { width: 24px; height: 24px; }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Background layers (one per image) -->
+    <div class="bg active" style="background-image: url('images/backgroundfinal.jpg')"></div>
+    <div class="bg"        style="background-image: url('images/onewayrerzied.jpg')"></div>
+    <div class="bg" style="background-image: url('images/greenside.jpg')"></div>
+    <div class="bg" style="background-image: url('images/treetop.jpg')"></div>
+
     <!-- Overlay -->
     <div class="overlay"></div>
 
     <!-- Top-right -->
     <header>
-        <a href="terms.html">Terms</a>
-		<a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms 📃</a>
+        <a href="privacy.html">Privacy Policy 🔒</a>
     </header>
 
     <!-- Interactive container -->
@@ -130,33 +141,36 @@
                 <a href="arsalanahmed.pdf" target="_blank" aria-label="Resume">
                     <img src="images/resumeicon.png" alt="Resume">
                 </a>
-
                 <a href="https://www.linkedin.com/in/arsalanprofile/" target="_blank" aria-label="LinkedIn">
                     <img src="images/linkedinicon.png" alt="LinkedIn">
                 </a>
-
                 <a href="https://www.instagram.com/kitkattography/" target="_blank" aria-label="Instagram">
                     <img src="images/instagramicon.png" alt="Instagram">
                 </a>
-
-
             </nav>
         </main>
     </div>
 
-    <!-- Mouse movement script -->
     <script>
+        const bgs = document.querySelectorAll('.bg');
+        let current = 0;
+
+        document.addEventListener('click', (e) => {
+            // Don't cycle if clicking a link or button
+            if (e.target.closest('a, button')) return;
+
+            bgs[current].classList.remove('active');
+            current = (current + 1) % bgs.length;
+            bgs[current].classList.add('active');
+        });
+
+        // ── MOUSE PARALLAX ──
         const container = document.querySelector('.interactive-container');
 
         document.addEventListener('mousemove', (e) => {
             const { innerWidth, innerHeight } = window;
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-
-            // Sensitivity multiplier (adjust to make movement stronger or weaker)
-            const offsetX = ((mouseX / innerWidth) - 0.5) * 10; 
-            const offsetY = ((mouseY / innerHeight) - 0.5) * 10;
-
+            const offsetX = ((e.clientX / innerWidth)  - 0.5) * 10;
+            const offsetY = ((e.clientY / innerHeight) - 0.5) * 10;
             container.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
         });
     </script>
